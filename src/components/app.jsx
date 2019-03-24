@@ -11,7 +11,8 @@ class App extends Component {
 	
 	  this.state = {
 	  	gifs: [],
-	  	selectedGifId: null
+	  	selectedGifId: null,
+	  	searchBarFocused: true
 	  };
 	}
 
@@ -30,15 +31,23 @@ class App extends Component {
 	selectGif = (id) => {
 		this.setState({
 			selectedGifId: id
-		})
+		});
+	}
+
+	searchBarFocus = (way) => {
+		if (way == 'in') {
+			this.setState({ searchBarFocused: true });
+		} else {
+			this.setState({ searchBarFocused: false });
+		}
 	}
 
 	render() {
 		return(
 			<div>
 				<div className="left-scene">
-					<SearchBar searchFunction={this.search} />
-					<div className="selected-gif">
+					<SearchBar searchFunction={this.search} searchBarFocus={this.searchBarFocus} />
+					<div className={this.state.searchBarFocused ? "focused selected-gif" : "selected-gif"}>
 						<Gif id={this.state.selectedGifId} />
 					</div>
 				</div>

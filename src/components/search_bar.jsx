@@ -5,9 +5,24 @@ class SearchBar extends Component {
 		this.props.searchFunction(event.target.value);
 	}
 
+	handleFocus = () => {
+		this.props.searchBarFocus('in');
+	}
+
+	handleBlur = () => {
+		this.props.searchBarFocus('out');
+	}
+
 	render() {
 		return(
-			<input type="text" placeholder="Search for a gif ..." className="form-control form-search" onChange={this.handleChange} />
+			<input 
+				autoFocus="true" 
+				type="text" 
+				placeholder="Search for a gif ..." 
+				className="form-control form-search" 
+				onChange={this.handleChange} 
+				onFocus={this.handleFocus} 
+				onBlur={this.handleBlur}/>
 		);
 	}
 }
