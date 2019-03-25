@@ -8,14 +8,15 @@ class Gif extends Component {
 	}
 
 	render() {
-		if (this.props.id) {
-			const src = `https://media0.giphy.com/media/${this.props.id}/giphy.gif`;
-			return(
-				<img src={src} alt="" className="gif" onClick={this.handleClick} />
-			);
-		} else {
+		const { id } = this.props
+		if (!id) {
 			return null;
 		}
+
+		const src = `https://media0.giphy.com/media/${this.props.id}/giphy.gif`;
+		return(
+			<img src={src} alt="" className="gif" onClick={this.handleClick} />
+		);
 	}
 }
 
